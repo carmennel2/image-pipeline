@@ -2,10 +2,6 @@
 
 Uploads a directory of source images to the input S3 bucket and places one
 SQS message on the work queue per image. See design document Section 5.3.
-
-Uploading and enqueuing are done concurrently so that a large batch lands on
-the queue quickly. This is what produces the workload spike that the scaling
-evaluation depends on (design document Section 14.3).
 """
 from __future__ import annotations
 
@@ -13,7 +9,6 @@ import argparse
 import json
 import sys
 import uuid
-from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -24,9 +19,6 @@ IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp"}
 
 # SQS accepts at most ten messages in a single send_message_batch request.
 SQS_BATCH_LIMIT = 10
-
-# Number of concurrent workers used for uploading and enqueuing.
-CONCURRENCY = 24
 
 
 def main() -> None:
@@ -42,59 +34,27 @@ def main() -> None:
     sqs = boto3.client("sqs")
 
     print(f"Submitting {len(images)} image(s) under job {job_id}")
-
-    # Phase 1: upload every image to S3.
-    print("Uploading images to S3 ...")
-    items = _upload_all(s3, args.input_bucket, images)
-
-    # Phase 2: enqueue every message as a tight burst.
-    print("Enqueuing messages on the work queue ...")
-    _enqueue_all(sqs, args.queue_url, items, job_id)
-
-    print(f"Done. Submitted {len(items)} image(s) under job {job_id}.")
-
-
-def _upload_all(s3, bucket: str, images: list[Path]) -> list[tuple[str, str]]:
-    """Upload every image to S3 concurrently.
-
-    Returns a list of (image_id, input_key) pairs, one per uploaded image.
-    """
-
-    def upload(path: Path) -> tuple[str, str]:
+    batch: list[dict] = []
+    submitted = 0
+    for path in images:
         image_id = f"img-{uuid.uuid4().hex[:12]}"
         input_key = f"input/{image_id}{path.suffix.lower()}"
-        s3.upload_file(str(path), bucket, input_key)
-        return image_id, input_key
 
-    items: list[tuple[str, str]] = []
-    with ThreadPoolExecutor(max_workers=CONCURRENCY) as pool:
-        for done, item in enumerate(pool.map(upload, images), start=1):
-            items.append(item)
-            if done % 200 == 0:
-                print(f"  uploaded {done} of {len(images)}")
-    return items
+        # Upload the source image, then queue a message that points to it.
+        s3.upload_file(str(path), args.input_bucket, input_key)
+        batch.append(_message_entry(image_id, input_key, job_id))
+        submitted += 1
 
+        if len(batch) == SQS_BATCH_LIMIT:
+            _send_batch(sqs, args.queue_url, batch)
+            batch.clear()
+        if submitted % 100 == 0:
+            print(f"  submitted {submitted} of {len(images)}")
 
-def _enqueue_all(
-    sqs, queue_url: str, items: list[tuple[str, str]], job_id: str
-) -> None:
-    """Send one SQS message per image, in concurrent batches of ten."""
-    batches = [
-        items[i : i + SQS_BATCH_LIMIT]
-        for i in range(0, len(items), SQS_BATCH_LIMIT)
-    ]
+    if batch:
+        _send_batch(sqs, args.queue_url, batch)
 
-    def send(batch: list[tuple[str, str]]) -> None:
-        entries = [
-            _message_entry(image_id, input_key, job_id)
-            for image_id, input_key in batch
-        ]
-        response = sqs.send_message_batch(QueueUrl=queue_url, Entries=entries)
-        if response.get("Failed"):
-            raise RuntimeError(f"failed to enqueue: {response['Failed']}")
-
-    with ThreadPoolExecutor(max_workers=CONCURRENCY) as pool:
-        list(pool.map(send, batches))
+    print(f"Done. Submitted {submitted} image(s) under job {job_id}.")
 
 
 def _message_entry(image_id: str, input_key: str, job_id: str) -> dict:
@@ -106,6 +66,14 @@ def _message_entry(image_id: str, input_key: str, job_id: str) -> dict:
         "submittedAt": datetime.now(timezone.utc).isoformat(),
     }
     return {"Id": image_id, "MessageBody": json.dumps(body)}
+
+
+def _send_batch(sqs, queue_url: str, entries: list[dict]) -> None:
+    """Send a batch of up to ten messages to the work queue."""
+    response = sqs.send_message_batch(QueueUrl=queue_url, Entries=entries)
+    failed = response.get("Failed", [])
+    if failed:
+        raise RuntimeError(f"failed to enqueue {len(failed)} message(s): {failed}")
 
 
 def _find_images(directory: Path) -> list[Path]:

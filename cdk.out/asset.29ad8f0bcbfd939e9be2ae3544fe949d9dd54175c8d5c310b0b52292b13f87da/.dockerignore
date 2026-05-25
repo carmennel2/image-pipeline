@@ -1,0 +1,7 @@
+.git
+.venv
+infrastructure
+tests
+*.md
+cdk.json
+**/__pycache__

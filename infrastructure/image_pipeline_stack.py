@@ -10,6 +10,7 @@ from pathlib import Path
 import aws_cdk as cdk
 from aws_cdk import Duration, RemovalPolicy, Stack
 from aws_cdk import aws_dynamodb as dynamodb
+from aws_cdk import aws_ecr_assets as ecr_assets
 from aws_cdk import aws_lambda as lambda_
 from aws_cdk import aws_lambda_event_sources as event_sources
 from aws_cdk import aws_s3 as s3
@@ -78,17 +79,27 @@ class ImagePipelineStack(Stack):
         # --- Worker --------------------------------------------------------
         # The worker is a Lambda function packaged as a container image,
         # built from the Dockerfile at the repository root.
+        #
+        # The function and its image both use the arm64 architecture. This
+        # matches an Apple Silicon build machine, so the image builds
+        # natively without emulation, and arm64 (Graviton) Lambda is fully
+        # supported and lower cost. The function architecture and the image
+        # platform must agree, or Lambda cannot start the container.
+        #
+        # No reserved concurrency is set: this AWS account has a low Lambda
+        # concurrency limit, so reserving capacity would leave too little in
+        # the shared pool. The function scales within the account's limit
+        # instead (design document Section 7.6).
         worker = lambda_.DockerImageFunction(
             self,
             "Worker",
-            code=lambda_.DockerImageCode.from_image_asset(str(PROJECT_ROOT)),
+            code=lambda_.DockerImageCode.from_image_asset(
+                str(PROJECT_ROOT),
+                platform=ecr_assets.Platform.LINUX_ARM64,
+            ),
+            architecture=lambda_.Architecture.ARM_64,
             memory_size=2048,
             timeout=Duration.seconds(120),
-            # Caps concurrency to bound cost and protect downstream services.
-            # The scaling experiment in design document Section 14.3 varies
-            # this value. If a deploy reports a concurrency-limit error,
-            # lower this number or remove the line.
-            reserved_concurrent_executions=50,
             environment={
                 "INPUT_BUCKET": input_bucket.bucket_name,
                 "OUTPUT_BUCKET": output_bucket.bucket_name,

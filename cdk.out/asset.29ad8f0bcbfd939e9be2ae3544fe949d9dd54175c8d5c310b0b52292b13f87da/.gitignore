@@ -18,6 +18,3 @@ infrastructure/cdk.out/
 # Test data and local outputs
 testdata/
 local-output/
-my-photos/
-scale-test/
-fault-test/

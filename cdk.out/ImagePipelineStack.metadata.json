@@ -1,0 +1,405 @@
+{
+  "/ImagePipelineStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ImagePipelineStack/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+    {
+      "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+      "data": true
+    }
+  ],
+  "/ImagePipelineStack/InputBucketName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InputBucketName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ImagePipelineStack/OutputBucketName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "OutputBucketName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ImagePipelineStack/WorkQueueUrl": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WorkQueueUrl"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ImagePipelineStack/MetadataTableName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MetadataTableName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ImagePipelineStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...App.synth in aws-cdk-lib...",
+        "/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:543 (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:5434)"
+      ]
+    }
+  ],
+  "/ImagePipelineStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...App.synth in aws-cdk-lib...",
+        "/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:543 (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:5434)"
+      ]
+    }
+  ],
+  "/ImagePipelineStack/InputBucket/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InputBucket3BF8630A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketAutoDeleteObjects"
+      }
+    }
+  ],
+  "/ImagePipelineStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ImagePipelineStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ImagePipelineStack/OutputBucket/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "OutputBucket7114EB27"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketAutoDeleteObjects"
+      }
+    }
+  ],
+  "/ImagePipelineStack/MetadataTable/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MetadataTable30E05F1F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Table2 in aws-cdk-lib...",
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ImagePipelineStack/DeadLetterQueue/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DeadLetterQueue9F481546"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Queue2 in aws-cdk-lib...",
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ImagePipelineStack/WorkQueue/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WorkQueue94013F35"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Queue2 in aws-cdk-lib...",
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ImagePipelineStack/Worker/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Worker11F36D0F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new DockerImageFunction2 in aws-cdk-lib...",
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)",
+        "Immediate._onImmediate (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211921)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ImagePipelineStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...App.synth in aws-cdk-lib...",
+        "/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:543 (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:5434)",
+        "Kernel._Kernel_ensureSync (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:69889)",
+        "Kernel.invoke (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:54294)"
+      ]
+    }
+  ],
+  "/ImagePipelineStack/CDKMetadata/Condition": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadataAvailable"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...App.synth in aws-cdk-lib...",
+        "/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:543 (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:5434)",
+        "Kernel._Kernel_ensureSync (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:69889)",
+        "Kernel.invoke (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:54294)"
+      ]
+    }
+  ],
+  "/ImagePipelineStack/InputBucket/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InputBucketPolicy84EF9809"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)"
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketPolicyStatements"
+      }
+    }
+  ],
+  "/ImagePipelineStack/InputBucket/AutoDeleteObjectsCustomResource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InputBucketAutoDeleteObjectsCustomResourceE0706273"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ImagePipelineStack/OutputBucket/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "OutputBucketPolicyAE009DDC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)"
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketPolicyStatements"
+      }
+    }
+  ],
+  "/ImagePipelineStack/OutputBucket/AutoDeleteObjectsCustomResource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "OutputBucketAutoDeleteObjectsCustomResource6C7A161F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ImagePipelineStack/Worker/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WorkerServiceRole8543584E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new DockerImageFunction2 in aws-cdk-lib...",
+        "Kernel._Kernel_create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:61273)",
+        "Kernel.create (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:52004)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)"
+      ]
+    }
+  ],
+  "/ImagePipelineStack/Worker/SqsEventSource:ImagePipelineStackWorkQueue7BFFCE32/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WorkerSqsEventSourceImagePipelineStackWorkQueue7BFFCE326D31467D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addEventSource in aws-cdk-lib...",
+        "/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:543 (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:5434)",
+        "Kernel._Kernel_ensureSync (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:69889)",
+        "Kernel.invoke (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:54294)",
+        "KernelHost.processRequest (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:212822)",
+        "KernelHost.run (/private/var/folders/bc/3qqb0s1n4777twdfy4nqy39h0000gn/T/tmp3y4p4fed/lib/program.js:1:211877)"
+      ]
+    }
+  ],
+  "/ImagePipelineStack/Worker/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WorkerServiceRoleDefaultPolicyAE71B5FA"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ]
+}
