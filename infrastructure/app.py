@@ -1,8 +1,4 @@
-"""AWS CDK application entry point.
-
-Defines the deployable infrastructure for the image-processing pipeline.
-See design document Section 11.
-"""
+"""AWS CDK application entry point."""
 import aws_cdk as cdk
 
 from image_pipeline_stack import ImagePipelineStack

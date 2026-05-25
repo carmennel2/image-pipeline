@@ -1,18 +1,10 @@
-"""Run the scaling evaluation: submit a batch and record progress over time.
+"""Run a scaling test: submit a batch and record how fast it is processed.
 
-This script counts the images in the batch directory, records a baseline of
-the metadata table, runs the submitter to send the batch, and then samples
-how many images have been processed (the count of metadata records) until
-the whole batch is complete.
-
-Counting completed records is an exact, monotonically increasing measurement,
-unlike the work queue's own approximate counters, so it produces a clean
-curve. Each sample records:
-  - completed: images processed so far in this run
-  - backlog:   images still to be processed (total minus completed)
-
-The samples are written to a timestamped CSV in this folder, ready to be
-plotted as the scaling graph for the evaluation (design document Section 14.3).
+Counts the images in the batch directory, runs the submitter, and samples how
+many metadata records exist over time until the batch is complete. Counting
+completed records is exact and monotonic, unlike the queue's own approximate
+counters, so it gives a clean curve. The samples are written to a timestamped
+CSV for plotting.
 
 Usage:
   python evaluation/run_scaling_test.py <image-directory> \
@@ -31,7 +23,7 @@ from pathlib import Path
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp"}
 POLL_SECONDS = 4
-# Stop waiting if no image completes for this long after the batch is submitted.
+# Give up if no image completes for this long after the batch is submitted.
 STALL_TIMEOUT_SECONDS = 150
 
 
@@ -83,6 +75,7 @@ def main() -> None:
     start = time.monotonic()
 
     def monitor() -> None:
+        """Sample the completed count until the batch finishes (runs in a thread)."""
         with csv_path.open("w", newline="") as handle:
             writer = csv.writer(handle)
             writer.writerow(["elapsed_seconds", "timestamp", "completed", "backlog"])

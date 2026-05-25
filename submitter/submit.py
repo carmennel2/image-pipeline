@@ -1,11 +1,7 @@
-"""Command-line submitter.
+"""Command-line submitter: uploads a directory of images and queues them.
 
-Uploads a directory of source images to the input S3 bucket and places one
-SQS message on the work queue per image. See design document Section 5.3.
-
-Uploading and enqueuing are done concurrently so that a large batch lands on
-the queue quickly. This is what produces the workload spike that the scaling
-evaluation depends on (design document Section 14.3).
+Uploading and enqueuing run concurrently so a large batch lands on the queue
+quickly, which is what creates the workload spike for the scaling evaluation.
 """
 from __future__ import annotations
 
@@ -19,14 +15,9 @@ from pathlib import Path
 
 import boto3
 
-# File extensions the submitter treats as images.
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp"}
-
-# SQS accepts at most ten messages in a single send_message_batch request.
-SQS_BATCH_LIMIT = 10
-
-# Number of concurrent workers used for uploading and enqueuing.
-CONCURRENCY = 24
+SQS_BATCH_LIMIT = 10  # most messages SQS accepts in one send_message_batch call
+CONCURRENCY = 24      # concurrent workers for uploading and enqueuing
 
 
 def main() -> None:
@@ -43,11 +34,9 @@ def main() -> None:
 
     print(f"Submitting {len(images)} image(s) under job {job_id}")
 
-    # Phase 1: upload every image to S3.
     print("Uploading images to S3 ...")
     items = _upload_all(s3, args.input_bucket, images)
 
-    # Phase 2: enqueue every message as a tight burst.
     print("Enqueuing messages on the work queue ...")
     _enqueue_all(sqs, args.queue_url, items, job_id)
 
@@ -55,10 +44,7 @@ def main() -> None:
 
 
 def _upload_all(s3, bucket: str, images: list[Path]) -> list[tuple[str, str]]:
-    """Upload every image to S3 concurrently.
-
-    Returns a list of (image_id, input_key) pairs, one per uploaded image.
-    """
+    """Upload every image to S3 concurrently and return (image_id, key) pairs."""
 
     def upload(path: Path) -> tuple[str, str]:
         image_id = f"img-{uuid.uuid4().hex[:12]}"

@@ -1,13 +1,10 @@
 """Plot a scaling-test run as a chart.
 
-Reads a run CSV produced by run_scaling_test.py and draws the backlog of
-images still to be processed together with the processing throughput over
-time. Saves the chart as a PNG beside the CSV.
+Reads a run CSV from run_scaling_test.py and draws the backlog and the
+processing throughput over time, saving the chart as a PNG beside the CSV.
 
 Usage:
-  python evaluation/plot_run.py [path-to-run-csv]
-
-If no path is given, the most recent run CSV in this folder is used.
+  python evaluation/plot_run.py [path-to-run-csv]   (defaults to the latest run)
 """
 from __future__ import annotations
 

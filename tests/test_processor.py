@@ -1,7 +1,6 @@
-"""Unit tests for the Image Processor.
+"""Unit tests for the image processor.
 
-The processor has no AWS dependencies, so these tests run locally with no
-cloud setup. See design document Section 14.2.
+The processor has no AWS dependencies, so these run locally with no cloud setup.
 """
 from __future__ import annotations
 
@@ -40,7 +39,7 @@ def test_derivatives_are_webp() -> None:
 
 
 def test_longest_edge_matches_target() -> None:
-    """Each derivative is resized so its longest edge does not exceed the target."""
+    """Each derivative's longest edge does not exceed its target size."""
     for derivative in process_image(_make_image(2000, 1500)):
         assert max(derivative.width, derivative.height) <= derivative.size
 
@@ -60,6 +59,6 @@ def test_exif_is_removed() -> None:
 
 
 def test_invalid_image_raises_value_error() -> None:
-    """Bytes that are not a valid image raise ValueError (a permanent failure)."""
+    """Bytes that are not a valid image raise ValueError."""
     with pytest.raises(ValueError):
         process_image(b"this is definitely not an image")

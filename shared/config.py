@@ -1,8 +1,7 @@
-"""Shared configuration, read from environment variables.
+"""Reads the worker's configuration from environment variables.
 
-The infrastructure (the CDK app) sets these environment variables on the
-Lambda function. Nothing in the code is hard-coded (design document
-Section 10.5).
+The CDK app sets these variables on the Lambda function, so nothing is
+hard-coded.
 """
 from __future__ import annotations
 
@@ -10,13 +9,7 @@ import os
 
 
 def get(name: str) -> str:
-    """Return the value of a required environment variable.
-
-    Raises:
-        RuntimeError: if the variable is not set, so that a misconfiguration
-            fails loudly and early rather than causing a confusing error
-            later on.
-    """
+    """Return a required environment variable, or raise if it is not set."""
     value = os.environ.get(name)
     if not value:
         raise RuntimeError(f"required environment variable {name!r} is not set")
@@ -26,8 +19,7 @@ def get(name: str) -> str:
 def get_bool(name: str, default: bool = False) -> bool:
     """Return a boolean environment variable.
 
-    The values "1", "true", and "yes" (case-insensitive) are read as True.
-    If the variable is not set, `default` is returned.
+    "1", "true", and "yes" (any case) are True; an unset variable returns the default.
     """
     value = os.environ.get(name)
     if not value:

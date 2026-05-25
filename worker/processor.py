@@ -1,8 +1,6 @@
-"""Image Processor: the core data-processing component.
+"""Image processor: resizes a source image into the standard WebP derivatives.
 
-Takes a source image and produces the standardised derivatives defined in
-Section 2.1 of the design document. This module has no AWS dependencies, so
-it can be unit-tested locally (see tests/test_processor.py).
+Has no AWS dependencies, so it can be unit-tested locally.
 """
 from __future__ import annotations
 
@@ -11,10 +9,8 @@ from io import BytesIO
 
 from PIL import Image, ImageDraw, ImageFont, UnidentifiedImageError
 
-# Target sizes for the resized derivatives (longest edge, in pixels).
+# Longest-edge sizes (in pixels) for the three derivatives.
 THUMBNAIL_SIZES: tuple[int, ...] = (256, 512, 1024)
-
-# Text drawn as the watermark on the largest derivative.
 WATERMARK_TEXT = "image-pipeline"
 
 
@@ -22,53 +18,39 @@ WATERMARK_TEXT = "image-pipeline"
 class Derivative:
     """One processed output image."""
 
-    size: int      # the target longest-edge size this derivative was made for
-    data: bytes    # the encoded WebP bytes
-    width: int     # actual width of the derivative in pixels
-    height: int    # actual height of the derivative in pixels
+    size: int      # longest-edge size this derivative was made for
+    data: bytes    # encoded WebP bytes
+    width: int
+    height: int
 
 
 def process_image(source_bytes: bytes, watermark: bool = False) -> list[Derivative]:
-    """Produce the WebP derivatives for one source image.
+    """Resize one source image into WebP derivatives, smallest first.
 
-    Args:
-        source_bytes: the raw bytes of the source image.
-        watermark: if True, a watermark is applied to the largest derivative.
-
-    Returns:
-        One Derivative per entry in THUMBNAIL_SIZES, ordered smallest first.
-
-    Raises:
-        ValueError: if source_bytes is not a decodable image. The caller
-            treats this as a permanent failure (see errors.py).
+    Raises ValueError if the bytes are not a decodable image, which the
+    caller treats as a permanent failure.
     """
     try:
         image = Image.open(BytesIO(source_bytes))
-        # Image.open is lazy; load() forces a decode now so that a corrupt
-        # or truncated file fails here rather than later.
-        image.load()
+        image.load()  # force the decode now so a corrupt file fails here
     except (UnidentifiedImageError, OSError) as exc:
         raise ValueError(f"source bytes are not a valid image: {exc}") from exc
 
-    # Work in RGB so that every derivative encodes consistently as WebP.
     if image.mode != "RGB":
-        image = image.convert("RGB")
+        image = image.convert("RGB")  # WebP encoding expects RGB
 
     largest_size = max(THUMBNAIL_SIZES)
     derivatives: list[Derivative] = []
 
     for size in sorted(THUMBNAIL_SIZES):
         derivative_image = image.copy()
-        # thumbnail() resizes in place, shrinks the image to fit within a
-        # size-by-size box, and preserves the original aspect ratio.
-        derivative_image.thumbnail((size, size))
+        derivative_image.thumbnail((size, size))  # resizes in place, keeps aspect ratio
 
         if watermark and size == largest_size:
             _apply_watermark(derivative_image)
 
         buffer = BytesIO()
-        # No exif argument is passed, so Pillow writes no metadata chunk:
-        # EXIF data from the source is not carried into the derivative.
+        # Saving without an exif argument drops the source metadata.
         derivative_image.save(buffer, format="WEBP", quality=82, method=4)
 
         derivatives.append(
@@ -84,7 +66,7 @@ def process_image(source_bytes: bytes, watermark: bool = False) -> list[Derivati
 
 
 def _apply_watermark(image: Image.Image) -> None:
-    """Draw a small text watermark in the bottom-right corner, in place."""
+    """Draw a small text watermark in the bottom-right corner."""
     draw = ImageDraw.Draw(image)
     font = ImageFont.load_default()
 
@@ -95,6 +77,6 @@ def _apply_watermark(image: Image.Image) -> None:
     x = image.width - text_width - margin
     y = image.height - text_height - margin
 
-    # Draw the text twice, offset, for a simple readable outline.
+    # Drawn twice, offset, to give the text a readable outline.
     draw.text((x + 1, y + 1), WATERMARK_TEXT, fill=(0, 0, 0), font=font)
     draw.text((x, y), WATERMARK_TEXT, fill=(255, 255, 255), font=font)
