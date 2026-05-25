@@ -5,7 +5,7 @@ description = "Distributed, scalable, fault-tolerant image-processing pipeline o
 requires-python = ">=3.11"
 dependencies = [
     "boto3",
-    "Pillow",
+    "Pillow>=10.0",
 ]
 
 [project.optional-dependencies]
@@ -29,3 +29,6 @@ line-length = 100
 [tool.mypy]
 python_version = "3.11"
 warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

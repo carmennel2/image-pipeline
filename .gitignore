@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# AWS CDK
+infrastructure/cdk.out/
+
+# Local
+.env
+.DS_Store
+
+# Test data and local outputs
+testdata/
+local-output/
