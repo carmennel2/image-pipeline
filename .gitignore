@@ -9,7 +9,7 @@ venv/
 .ruff_cache/
 
 # AWS CDK
-infrastructure/cdk.out/
+cdk.out/
 
 # Local
 .env
@@ -21,3 +21,8 @@ local-output/
 my-photos/
 scale-test/
 fault-test/
+
+# Evaluation outputs and report material
+evaluation/run_*.csv
+evaluation/run_*.png
+evaluation/evaluation-results.md

@@ -1,3 +1,0 @@
-# Runtime dependencies for the worker Lambda container image.
-# boto3 is already provided by the AWS Lambda Python base image.
-Pillow>=10.0
