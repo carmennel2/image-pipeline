@@ -64,6 +64,3 @@ To remove all the resources and stop incurring cost:
 
     cdk destroy
 
-## Author
-
-Carmen Brits. Built as the assessment for the Distributed Cloud-Based Data-Processing System module.
