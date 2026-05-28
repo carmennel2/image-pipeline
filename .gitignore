@@ -15,14 +15,23 @@ cdk.out/
 .env
 .DS_Store
 
-# Test data and local outputs
+# Test data and local outputs (never commit batches of test images)
 testdata/
 local-output/
 my-photos/
 scale-test/
+scale-test-*/
+concurrency-test/
+concurrency-test-*/
 fault-test/
+fault-test-*/
 
 # Evaluation outputs and report material
 evaluation/run_*.csv
 evaluation/run_*.png
+evaluation/concurrency_*.csv
+evaluation/concurrency_*.png
 evaluation/evaluation-results.md
+
+# Written report
+report/

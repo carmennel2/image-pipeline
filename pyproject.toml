@@ -19,6 +19,7 @@ dev = [
     "ruff",
     "mypy",
     "matplotlib",
+    "moto[s3,dynamodb,sqs]",
 ]
 infra = [
     "aws-cdk-lib",
@@ -37,6 +38,7 @@ line-length = 100
 [tool.mypy]
 python_version = "3.10"
 warn_unused_ignores = true
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

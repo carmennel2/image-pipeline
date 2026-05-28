@@ -31,13 +31,13 @@ def process_image(source_bytes: bytes, watermark: bool = False) -> list[Derivati
     caller treats as a permanent failure.
     """
     try:
-        image = Image.open(BytesIO(source_bytes))
-        image.load()  # force the decode now so a corrupt file fails here
+        opened = Image.open(BytesIO(source_bytes))
+        opened.load()  # force the decode now so a corrupt file fails here
     except (UnidentifiedImageError, OSError) as exc:
         raise ValueError(f"source bytes are not a valid image: {exc}") from exc
 
-    if image.mode != "RGB":
-        image = image.convert("RGB")  # WebP encoding expects RGB
+    # WebP encoding expects RGB; convert returns a plain Image, not an ImageFile.
+    image: Image.Image = opened if opened.mode == "RGB" else opened.convert("RGB")
 
     largest_size = max(THUMBNAIL_SIZES)
     derivatives: list[Derivative] = []

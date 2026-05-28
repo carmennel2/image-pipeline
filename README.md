@@ -5,7 +5,7 @@ See the accompanying design document for the full architecture.
 
 ## Overview
 
-<!-- TODO: a short paragraph, in your own words, describing what the system does. -->
+The pipeline takes a directory of source images and processes each one into three WebP derivatives sized 256, 512, and 1024 pixels on the longest edge, with EXIF metadata stripped. Images are uploaded to an S3 input bucket and a message per image is placed on an SQS work queue. AWS Lambda picks the messages up, runs the worker in parallel, writes the derivatives to an S3 output bucket, and writes one metadata record per image to DynamoDB. The number of concurrent workers rises and falls with the queue automatically, so the system absorbs bursts and scales to zero when idle. Failed messages are retried through the queue's visibility timeout, and messages that cannot be processed are isolated in a dead-letter queue.
 
 ## Repository structure
 
@@ -66,4 +66,4 @@ To remove all the resources and stop incurring cost:
 
 ## Author
 
-<!-- TODO: your name and student ID. -->
+Carmen Brits. Built as the assessment for the Distributed Cloud-Based Data-Processing System module.

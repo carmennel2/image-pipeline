@@ -1,0 +1,4 @@
+concurrency,batch_size,wall_clock_seconds,throughput_images_per_second
+2,1000,260.62,3.84
+5,1000,116.21,8.6
+10,1000,78.03,12.82
